@@ -24,14 +24,14 @@ export class BoardsController {
     return this.boardService.getAllBoard();
   }
 
-  @ApiResponse({ status: 201, description: 'Лавҳа бо муваффақият эҷод шуд' })
+  @ApiResponse({ status: 200, description: 'Лавҳа бо муваффақият эҷод шуд' })
   @Post('/post')
   createBoard(@Body() createBoartdto: CreateBoartdto): Board {
     return this.boardService.createBoard(createBoartdto);
   }
-  @Get('/:id')
-  getBoardById(@Param('id') id: string): Board {
-    return this.boardService.getBoardById(id); // Fixed method name here
+  @Get('/:title')
+  getBoardById(@Param('title') title: string): Board {
+    return this.boardService.getBoardById(title);
   }
   @Delete('/delet/:id')
   deleteBoardById(@Param('id') id: string): void {
