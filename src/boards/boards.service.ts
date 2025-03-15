@@ -11,12 +11,14 @@ export class BoardService {
   }
 
   createBoard(createBoardDto: CreateBoartdto): Board {
-    const { title, description } = createBoardDto;
+    const { title, description, price, img } = createBoardDto;
 
     const board: Board = {
       id: String(this.boards.length + 1),
       title,
       description,
+      price: price,
+      img,
       status: BoardStatus.PUBLIC, // ✅ Ensure BoardStatus.PUBLIC exists
     };
 
@@ -24,11 +26,11 @@ export class BoardService {
     return board;
   }
 
-  getBoardById(id: string): Board {
-    const board = this.boards.find((board) => board.id === id);
+  getBoardById(title: string): Board {
+    const board = this.boards.find((board) => board.title === title);
 
     if (!board) {
-      throw new NotFoundException(`Board with ID ${id} not found`);
+      throw new NotFoundException(`Board with ID ${title} not found`);
     }
 
     return board;
